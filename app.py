@@ -1,4 +1,5 @@
 from PyQt5 import QtWidgets
+from PyQt5.Qt import QPixmap, QPalette, QBrush
 
 from screen_manager import Screen
 from screens import about_screen, code_screen, decode_screen, start_screen

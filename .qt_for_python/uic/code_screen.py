@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'UI\\decode_screen.ui'
+# Form implementation generated from reading ui file 'c:\Users\Dimitry\Python programs\lab-infa\UI\code_screen.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -14,36 +14,34 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(783, 570)
+        Form.resize(773, 479)
         self.gridLayout = QtWidgets.QGridLayout(Form)
         self.gridLayout.setObjectName("gridLayout")
+        self.output = QtWidgets.QLineEdit(Form)
+        self.output.setReadOnly(True)
+        self.output.setObjectName("output")
+        self.gridLayout.addWidget(self.output, 9, 0, 1, 1)
         self.input = QtWidgets.QLineEdit(Form)
-        self.input.setText("")
         self.input.setObjectName("input")
         self.gridLayout.addWidget(self.input, 2, 0, 1, 1)
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_4.addItem(spacerItem)
+        self.run_button = QtWidgets.QPushButton(Form)
+        self.run_button.setObjectName("run_button")
+        self.horizontalLayout_4.addWidget(self.run_button)
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_4.addItem(spacerItem1)
+        self.gridLayout.addLayout(self.horizontalLayout_4, 3, 0, 1, 1)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.back_button = QtWidgets.QPushButton(Form)
         self.back_button.setObjectName("back_button")
         self.horizontalLayout.addWidget(self.back_button)
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem)
-        self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 1)
-        self.output = QtWidgets.QLineEdit(Form)
-        self.output.setText("")
-        self.output.setReadOnly(True)
-        self.output.setObjectName("output")
-        self.gridLayout.addWidget(self.output, 7, 0, 1, 1)
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem1)
-        self.run_button = QtWidgets.QPushButton(Form)
-        self.run_button.setObjectName("run_button")
-        self.horizontalLayout_3.addWidget(self.run_button)
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem2)
-        self.gridLayout.addLayout(self.horizontalLayout_3, 3, 0, 1, 1)
+        self.horizontalLayout.addItem(spacerItem2)
+        self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 1)
         spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.gridLayout.addItem(spacerItem3, 1, 0, 1, 1)
 
@@ -53,5 +51,5 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
+        self.run_button.setText(_translate("Form", "Закодировать"))
         self.back_button.setText(_translate("Form", "Назад"))
-        self.run_button.setText(_translate("Form", "Декодировать"))

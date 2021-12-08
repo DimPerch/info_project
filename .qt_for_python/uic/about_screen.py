@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'UI\\about_screen.ui'
+# Form implementation generated from reading ui file 'c:\Users\Dimitry\Python programs\lab-infa\UI\about_screen.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #

@@ -1,22 +1,35 @@
 QMainWindow{
     background-color: #252525;
+    background-image: url(background.jpg);
+    min-width:  640px;
+    min-height: 480px;
 }
+
 QPushButton{
     color: #219C4E;
     background-color: #252525;
     font: 20pt "Fairfax";
+    border: none;
+    border-radius: 5px;
+    min-width:  2em;
+    min-height: 1em;
+    max-width:  20em;
+    max-height: 10em;
+    padding: 10px;
 }
+
 QPushButton:hover{
     background-color: #1c1c1c;
 }
+
 QLabel{
     color: #219C4E;
     background-color: #1c1c1c;
     font: 20pt "Fairfax";
 }
+
 QLineEdit{
     color: #219C4E;
     background-color: #1c1c1c;
     font: 20pt "Fairfax";
 }
-
