@@ -1,0 +1,22 @@
+QMainWindow{
+    background-color: #252525;
+}
+QPushButton{
+    color: #219C4E;
+    background-color: #252525;
+    font: 20pt "Fairfax";
+}
+QPushButton:hover{
+    background-color: #1c1c1c;
+}
+QLabel{
+    color: #219C4E;
+    background-color: #1c1c1c;
+    font: 20pt "Fairfax";
+}
+QLineEdit{
+    color: #219C4E;
+    background-color: #1c1c1c;
+    font: 20pt "Fairfax";
+}
+
