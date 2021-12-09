@@ -1,8 +1,12 @@
 QMainWindow{
     background-color: #252525;
-    background-image: url(background.jpg);
+    background-image: url(background.jpg) stretch ;
+    background-origin: content;
+    background-position: center;
     min-width:  640px;
     min-height: 480px;
+    max-width: 1920;
+    max-height: 1080px;
 }
 
 QPushButton{
