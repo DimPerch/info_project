@@ -1,7 +1,7 @@
 from app import App
 import sys
-from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtGui import QFontDatabase
+from PyQt6 import QtWidgets, QtCore
+from PyQt6.QtGui import QFontDatabase
 
 
 if __name__ == "__main__":
@@ -12,10 +12,9 @@ if __name__ == "__main__":
         raise FileNotFoundError("failed to connect font")
 
     file = QtCore.QFile(r"style.qss")
-    file.open(QtCore.QFile.ReadOnly | QtCore.QFile.Text)
+    file.open(QtCore.QIODeviceBase.OpenModeFlag.ReadOnly | QtCore.QIODeviceBase.OpenModeFlag.Text)
     stream = QtCore.QTextStream(file)
     app.setStyleSheet(stream.readAll())
-
     application = App()
     application.show()
 

@@ -12,7 +12,8 @@ QMainWindow{
 QPushButton{
     color: #219C4E;
     background-color: #252525;
-    font: 20pt "Fairfax";
+    font: 14pt "Fairfax";
+    font-size: 99em;
     border: none;
     border-radius: 5px;
     min-width:  2em;

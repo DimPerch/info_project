@@ -1,5 +1,4 @@
-from PyQt5 import QtWidgets
-from PyQt5.Qt import QPixmap, QPalette, QBrush
+from PyQt6 import QtWidgets
 
 from screen_manager import Screen
 from screens import about_screen, code_screen, decode_screen, start_screen
@@ -65,7 +64,7 @@ class App(QtWidgets.QMainWindow):
     def code(self):
         text = self.code_screen.ui.input.text()
         code = algorithms.Code(text)
-        self.code_screen.ui.output.setText(code + 'зашифровал')
+        self.code_screen.ui.output.setText(code.result)
 
 
     def decode(self):

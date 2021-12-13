@@ -1,5 +1,5 @@
-from PyQt5 import uic
-from PyQt5.QtWidgets import QWidget
+from PyQt6 import uic
+from PyQt6.QtWidgets import QWidget
 
 from screens import code_screen, decode_screen, start_screen, about_screen
 
