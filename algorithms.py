@@ -6,6 +6,7 @@ ALPHABET = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
 class Code(str):
     def __init__(self, string: str):
         check = Code.check(string)
+        self.result = "ОШИБКА ИСХОДНЫХ ДАННЫХ"
         if check:
             result = Code.run(string)
             self.result = result
@@ -14,7 +15,10 @@ class Code(str):
 
     @staticmethod
     def check(string):
-        return True
+        result = False
+        if all([i in ALPHABET for i in string]):
+            result = True
+        return result
 
 
     @staticmethod
