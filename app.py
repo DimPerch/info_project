@@ -5,7 +5,7 @@ from screen_manager import Screen
 from screens import about_screen, code_screen, decode_screen, start_screen, game_screen
 from screens.main_app import Ui_MainWindow
 
-import algorithms
+import algorithms_test
 
 
 class App(QtWidgets.QMainWindow):
@@ -97,13 +97,13 @@ class App(QtWidgets.QMainWindow):
 
     def code(self):
         text = self.code_screen.ui.input.text()
-        code = algorithms.Code(text)
+        code = algorithms_test.Code(text)
         self.code_screen.ui.output.setText(code.result)
 
 
     def decode(self):
         text = self.decode_screen.ui.input.text()
-        code = algorithms.Decode(text)
+        code = algorithms_test.Decode(text)
         self.decode_screen.ui.output.setText(code + 'расшифровал')
 
 
