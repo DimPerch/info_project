@@ -37,3 +37,7 @@ QLineEdit{
     background-color: #1c1c1c;
     font: 20pt "Fairfax";
 }
+
+QGraphicsView{
+    color: #000000;
+}

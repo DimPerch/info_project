@@ -17,7 +17,7 @@
    <item>
     <widget class="QPushButton" name="code_button">
      <property name="text">
-      <string>прямая задача</string>
+      <string>Прямая задача</string>
      </property>
      <attribute name="buttonGroup">
       <string notr="true">menu</string>
@@ -27,11 +27,18 @@
    <item>
     <widget class="QPushButton" name="decode_button">
      <property name="text">
-      <string>обратная задача</string>
+      <string>Обратная задача</string>
      </property>
      <attribute name="buttonGroup">
       <string notr="true">menu</string>
      </attribute>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="game_button">
+     <property name="text">
+      <string>Игра</string>
+     </property>
     </widget>
    </item>
    <item>

@@ -1,7 +1,8 @@
 from PyQt6 import QtWidgets
-
+from PyQt6.QtGui import QPixmap
+from PyQt6.QtCore import QTimer, QTime
 from screen_manager import Screen
-from screens import about_screen, code_screen, decode_screen, start_screen
+from screens import about_screen, code_screen, decode_screen, start_screen, game_screen
 from screens.main_app import Ui_MainWindow
 
 import algorithms
@@ -18,6 +19,19 @@ class App(QtWidgets.QMainWindow):
         self.screen_loader()
         self.button_loader()
 
+
+        self.size_timer = QTimer(self)
+        self.size_timer.timeout.connect(self.size_check)
+        self.size_timer.start(100)
+
+        #self.scene = QtWidgets.QGraphicsScene()
+        #self.game_screen.ui.graphicsView.setScene(self.scene)
+
+        self.img = [QPixmap('resourses/img/00.jpg'),
+                    QPixmap('resourses/img/01.jpg'),
+                    QPixmap('resourses/img/02.jpg'),
+                    QPixmap('resourses/img/03.jpg')]
+
     
     def button_loader(self):
         """
@@ -29,9 +43,25 @@ class App(QtWidgets.QMainWindow):
         self.code_screen.ui.back_button.clicked.connect(back)
         self.decode_screen.ui.back_button.clicked.connect(back)
         self.about_screen.ui.back_button.clicked.connect(back)
+        self.game_screen.ui.back_button.clicked.connect(back)
 
+
+        self.start_screen.ui.game_button.clicked.connect(self.start_game)
         self.code_screen.ui.run_button.clicked.connect(self.code)
         self.decode_screen.ui.run_button.clicked.connect(self.decode)
+
+
+
+    def size_check(self):
+        h = self.game_screen.ui.img.height()
+        self.game_screen.ui.img.setPixmap(self.img[1].scaledToHeight(h))
+        #w, h = self.game_screen.ui.graphicsView.width(), self.game_screen.ui.graphicsView.height()
+        #print(w, h)
+        #for i in range(len(self.img)):
+           # self.img[i] = self.img[i].scaledToHeight(h)
+           # self.img[i] = self.img[i].scaledToHeight(w)
+        #img = QtWidgets.QGraphicsPixmapItem(self.img[0])
+        #self.scene.addItem(img)
 
 
     def screen_loader(self):
@@ -49,6 +79,10 @@ class App(QtWidgets.QMainWindow):
         
         self.about_screen = Screen(about_screen.Ui_Form())
         self.ui.stackedWidget.addWidget(self.about_screen)
+
+        self.game_screen = Screen(game_screen.Ui_Form())
+        self.ui.stackedWidget.addWidget(self.game_screen)
+
 
 
     def menu_click(self, pressed_button):
@@ -71,3 +105,8 @@ class App(QtWidgets.QMainWindow):
         text = self.decode_screen.ui.input.text()
         code = algorithms.Decode(text)
         self.decode_screen.ui.output.setText(code + 'расшифровал')
+
+
+    def start_game(self):
+       
+        self.ui.stackedWidget.setCurrentIndex(4)
