@@ -1,10 +1,12 @@
-from PyQt6 import QtWidgets
-from PyQt6.QtGui import QPixmap
-from PyQt6 import QtCore
-from screen_manager import Screen
-from screens import about_screen, code_screen, decode_screen, start_screen, game_screen, main_app
 from random import choice
+
+from PyQt6 import QtCore, QtWidgets
+from PyQt6.QtGui import QFontDatabase, QPixmap
+
 import algorithms
+from screen_manager import Screen
+from screens import (about_screen, code_screen, decode_screen, game_screen,
+                     main_app, start_screen)
 
 
 class App(QtWidgets.QMainWindow):
@@ -14,10 +16,17 @@ class App(QtWidgets.QMainWindow):
     def __init__(self):
         super(App, self).__init__()
 
+        # load stylesheet
         file = QtCore.QFile(r"style.qss")
         file.open(QtCore.QIODeviceBase.OpenModeFlag.ReadOnly | QtCore.QIODeviceBase.OpenModeFlag.Text)
         stream = QtCore.QTextStream(file)
         self.setStyleSheet(stream.readAll())
+
+        # load font
+        font = QFontDatabase.addApplicationFont('resourses/font/Fairfax.ttf')
+        if font == -1:
+            print("ERROR: failed to connect font")
+
         self.game = Game(self)
 
         self.ui = main_app.Ui_MainWindow()

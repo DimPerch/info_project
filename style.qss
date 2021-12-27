@@ -1,6 +1,6 @@
 QMainWindow{
     background-color: #252525;
-    background-image: url(background.jpg) stretch ;
+    background-image: url(resourses/img/background.jpg) stretch ;
     background-origin: content;
     background-position: center;
     min-width:  640px;
