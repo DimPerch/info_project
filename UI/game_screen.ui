@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>396</height>
+    <width>674</width>
+    <height>489</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1,0">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
@@ -40,6 +40,12 @@
    </item>
    <item>
     <widget class="QLabel" name="img">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
      </property>
@@ -49,11 +55,22 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="text">
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,0">
+     <item>
+      <widget class="QLabel" name="text">
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="next_button">
+       <property name="text">
+        <string>Дальше</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

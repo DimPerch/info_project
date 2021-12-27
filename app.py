@@ -2,8 +2,7 @@ from PyQt6 import QtWidgets
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import QTimer, QTime
 from screen_manager import Screen
-from screens import about_screen, code_screen, decode_screen, start_screen, game_screen
-from screens.main_app import Ui_MainWindow
+from screens import about_screen, code_screen, decode_screen, start_screen, game_screen, main_app
 
 import algorithms_test
 
@@ -14,23 +13,21 @@ class App(QtWidgets.QMainWindow):
     """
     def __init__(self):
         super(App, self).__init__()
-        self.ui = Ui_MainWindow()
+        self.ui = main_app.Ui_MainWindow()
         self.ui.setupUi(self)
         self.screen_loader()
         self.button_loader()
-
+        self.game = Game(self)
 
         self.size_timer = QTimer(self)
-        self.size_timer.timeout.connect(self.size_check)
+        self.size_timer.timeout.connect(self.game.size_check)
         self.size_timer.start(100)
 
-        #self.scene = QtWidgets.QGraphicsScene()
-        #self.game_screen.ui.graphicsView.setScene(self.scene)
+        self.img = [(QPixmap('resourses/img/00.jpg'), 'Злой бандит заложил бомбу'),
+                    (QPixmap('resourses/img/01.jpg'), 'Угадай где'),
+                    (QPixmap('resourses/img/02.jpg'), 'Угадал'),
+                    (QPixmap('resourses/img/03.jpg'), 'Неугадал')]
 
-        self.img = [QPixmap('resourses/img/00.jpg'),
-                    QPixmap('resourses/img/01.jpg'),
-                    QPixmap('resourses/img/02.jpg'),
-                    QPixmap('resourses/img/03.jpg')]
 
     
     def button_loader(self):
@@ -50,18 +47,7 @@ class App(QtWidgets.QMainWindow):
         self.code_screen.ui.run_button.clicked.connect(self.code)
         self.decode_screen.ui.run_button.clicked.connect(self.decode)
 
-
-
-    def size_check(self):
-        h = self.game_screen.ui.img.height()
-        self.game_screen.ui.img.setPixmap(self.img[1].scaledToHeight(h))
-        #w, h = self.game_screen.ui.graphicsView.width(), self.game_screen.ui.graphicsView.height()
-        #print(w, h)
-        #for i in range(len(self.img)):
-           # self.img[i] = self.img[i].scaledToHeight(h)
-           # self.img[i] = self.img[i].scaledToHeight(w)
-        #img = QtWidgets.QGraphicsPixmapItem(self.img[0])
-        #self.scene.addItem(img)
+        self.game_screen.ui.next_button.clicked.connect(self.next_state)
 
 
     def screen_loader(self):
@@ -84,7 +70,6 @@ class App(QtWidgets.QMainWindow):
         self.ui.stackedWidget.addWidget(self.game_screen)
 
 
-
     def menu_click(self, pressed_button):
         """
         Checking press button in start menu
@@ -104,9 +89,30 @@ class App(QtWidgets.QMainWindow):
     def decode(self):
         text = self.decode_screen.ui.input.text()
         code = algorithms_test.Decode(text)
-        self.decode_screen.ui.output.setText(code + 'расшифровал')
+        self.decode_screen.ui.output.setText(code.result)
 
 
     def start_game(self):
-       
         self.ui.stackedWidget.setCurrentIndex(4)
+
+    def next_state(self):
+        self.game.state += 1
+        if self.game.state > 3:
+            self.game.state = 0
+            self.ui.stackedWidget.setCurrentIndex(0)
+
+        
+        
+
+
+class Game:
+    def __init__(self, app):
+        self.app = app
+        self.state = 0
+        self.password = ["Кирилл", "Дима", "Аня"]
+
+
+    def size_check(self):
+        h = self.app.game_screen.ui.img.height()
+        self.app.game_screen.ui.img.setPixmap(self.app.img[self.state][0].scaledToHeight(h))
+        self.app.game_screen.ui.text.setText(self.app.img[self.state][1])
