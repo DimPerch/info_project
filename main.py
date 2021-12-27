@@ -11,7 +11,6 @@ if __name__ == "__main__":
     if font == -1:
         raise FileNotFoundError("failed to connect font")
 
-    
     application = App()
     application.show()
 

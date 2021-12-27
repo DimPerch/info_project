@@ -4,7 +4,7 @@ from PyQt6 import QtCore
 from screen_manager import Screen
 from screens import about_screen, code_screen, decode_screen, start_screen, game_screen, main_app
 from random import choice
-import algorithms_test
+import algorithms
 
 
 class App(QtWidgets.QMainWindow):
@@ -18,12 +18,13 @@ class App(QtWidgets.QMainWindow):
         file.open(QtCore.QIODeviceBase.OpenModeFlag.ReadOnly | QtCore.QIODeviceBase.OpenModeFlag.Text)
         stream = QtCore.QTextStream(file)
         self.setStyleSheet(stream.readAll())
+        self.game = Game(self)
 
         self.ui = main_app.Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowTitle("Шифратор / дешифратор XXX_FCTI")
         self.screen_loader()
         self.button_loader()
-        self.game = Game(self)
 
         self.size_timer = QtCore.QTimer(self)
         self.size_timer.timeout.connect(self.game.size_check)
@@ -53,7 +54,7 @@ class App(QtWidgets.QMainWindow):
         self.code_screen.ui.run_button.clicked.connect(self.code)
         self.decode_screen.ui.run_button.clicked.connect(self.decode)
 
-        self.game_screen.ui.next_button.clicked.connect(self.next_state)
+        self.game_screen.ui.next_button.clicked.connect(self.game.next_state)
 
 
     def screen_loader(self):
@@ -87,40 +88,62 @@ class App(QtWidgets.QMainWindow):
 
 
     def code(self):
+        """
+        From text to code
+        """
         text = self.code_screen.ui.input.text()
-        code = algorithms_test.Code(text)
+        code = algorithms.Code(text)
         self.code_screen.ui.output.setText(code.result)
 
 
     def decode(self):
+        """
+        From decode to text
+        """
         text = self.decode_screen.ui.input.text()
-        code = algorithms_test.Decode(text)
+        code = algorithms.Decode(text)
         self.decode_screen.ui.output.setText(code.result)
 
 
     def start_game(self):
-        self.ui.stackedWidget.setCurrentIndex(4)
-
-    def next_state(self):
-        self.game.state += 1
-        if self.game.state == 1:
-            self.game.password = choice(self.game.words)
-        if self.game.state > 3:
-            self.game.state = 0
-            self.ui.stackedWidget.setCurrentIndex(0)
-
-        
-        
+        self.ui.stackedWidget.setCurrentIndex(4)   
 
 
 class Game:
     def __init__(self, app):
         self.app = app
         self.state = 0
-        self.words = ["Кирилл", "Дима", "Аня"]
+        """Dictionary with passwords"""
+        self.words = ["Кирилл", "Дима", "Аня", "Фкти", "ЛЭТИ", "Питер", "Москва", "Метро", "Подвал"]
+        self.password = None
 
 
     def size_check(self):
+        """
+        Resize images in game
+        """
         h = self.app.game_screen.ui.img.height()
         self.app.game_screen.ui.img.setPixmap(self.app.img[self.state][0].scaledToHeight(h))
         self.app.game_screen.ui.text.setText(self.app.img[self.state][1])
+
+
+    def next_state(self):
+        """
+        State machine for game
+        """
+        if self.state == 0:
+            self.state += 1
+            self.password = choice(self.words)
+            print(f"password: [{self.password}]")
+        elif self.state == 1:
+            code = algorithms.Code(self.password)
+            dialog = QtWidgets.QInputDialog
+            text, ok = dialog.getText(self.app, 'Расшифруй', code.result)
+            if ok and text:
+                if text == self.password:
+                    self.state += 1
+                else:
+                    self.state += 2
+        elif self.state >= 2:
+            self.state = 0
+            self.app.ui.stackedWidget.setCurrentIndex(0)

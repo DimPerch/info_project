@@ -38,6 +38,10 @@ QLineEdit{
     font: 20pt "Fairfax";
 }
 
-QGraphicsView{
-    color: #000000;
+QTextBrowser{
+    border: none;
+}
+
+QInputDialog{
+    background-color: #252525;
 }
