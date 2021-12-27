@@ -140,7 +140,7 @@ class Game:
             dialog = QtWidgets.QInputDialog
             text, ok = dialog.getText(self.app, 'Расшифруй', code.result)
             if ok and text:
-                if text == self.password:
+                if text.upper() == self.password.upper():
                     self.state += 1
                 else:
                     self.state += 2
