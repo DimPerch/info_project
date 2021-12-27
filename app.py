@@ -1,9 +1,9 @@
 from PyQt6 import QtWidgets
 from PyQt6.QtGui import QPixmap
-from PyQt6.QtCore import QTimer, QTime
+from PyQt6 import QtCore
 from screen_manager import Screen
 from screens import about_screen, code_screen, decode_screen, start_screen, game_screen, main_app
-
+from random import choice
 import algorithms_test
 
 
@@ -13,13 +13,19 @@ class App(QtWidgets.QMainWindow):
     """
     def __init__(self):
         super(App, self).__init__()
+
+        file = QtCore.QFile(r"style.qss")
+        file.open(QtCore.QIODeviceBase.OpenModeFlag.ReadOnly | QtCore.QIODeviceBase.OpenModeFlag.Text)
+        stream = QtCore.QTextStream(file)
+        self.setStyleSheet(stream.readAll())
+
         self.ui = main_app.Ui_MainWindow()
         self.ui.setupUi(self)
         self.screen_loader()
         self.button_loader()
         self.game = Game(self)
 
-        self.size_timer = QTimer(self)
+        self.size_timer = QtCore.QTimer(self)
         self.size_timer.timeout.connect(self.game.size_check)
         self.size_timer.start(100)
 
@@ -97,6 +103,8 @@ class App(QtWidgets.QMainWindow):
 
     def next_state(self):
         self.game.state += 1
+        if self.game.state == 1:
+            self.game.password = choice(self.game.words)
         if self.game.state > 3:
             self.game.state = 0
             self.ui.stackedWidget.setCurrentIndex(0)
@@ -109,7 +117,7 @@ class Game:
     def __init__(self, app):
         self.app = app
         self.state = 0
-        self.password = ["Кирилл", "Дима", "Аня"]
+        self.words = ["Кирилл", "Дима", "Аня"]
 
 
     def size_check(self):

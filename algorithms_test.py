@@ -1,6 +1,6 @@
 import random
 
-ALPHABET = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+ALPHABET = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ "
 RIMALPHABET = "XIV"
 
 
@@ -31,11 +31,11 @@ class Code(str):
             if i != len(string) - 1:
                 result = result + str(random.randint(10,19))
         i = 0
-        g = 6
+        g = 4
         for i in range(0, len(result), 2):
             perevod = ''
             if g > 9:
-                g = 6
+                g = 4
             a = int(result[i:i+2])
             if g % 2 == 0:
                 while a >= g:
@@ -113,7 +113,7 @@ class Decode(str):
                 a = int(string[:i])
                 n = Decode.to10ss(a, g)
                 result = result + str(n)
-                if g > 9:
+                if g == 8:
                     g = 4
                 else:
                     g += 2
@@ -135,7 +135,6 @@ class Decode(str):
         a = int(string)
         n = Decode.to10ss(a, g)
         result = result + str(n)
-        print(len(result))
         for i in range(0, len(result), 2):
             n = int(result[i:i+2]) - 10
             result1.append(ALPHABET[n])

@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'UI/main_app.ui'
+# Form implementation generated from reading ui file 'c:\Users\Dimitry\Python programs\lab-infa\UI\main_app.ui'
 #
 # Created by: PyQt6 UI code generator 6.1.0
 #
@@ -18,6 +18,7 @@ class Ui_MainWindow(object):
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
         self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
         self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)
@@ -34,4 +35,4 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "Шифратор / дешифратор XXX_fcti_gay_love"))
+        self.label.setText(_translate("MainWindow", "Шифратор / дешифратор XXX_FCTI"))

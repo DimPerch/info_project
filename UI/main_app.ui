@@ -18,7 +18,10 @@
     <item row="0" column="0">
      <widget class="QLabel" name="label">
       <property name="text">
-       <string>Шифратор / дешифратор XXX_fcti_gay_love</string>
+       <string>Шифратор / дешифратор XXX_FCTI</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
