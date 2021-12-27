@@ -1,7 +1,7 @@
 from random import choice
 
 from PyQt6 import QtCore, QtWidgets
-from PyQt6.QtGui import QFontDatabase, QPixmap
+from PyQt6.QtGui import QFontDatabase, QPixmap, QIcon
 
 import algorithms
 from screen_manager import Screen
@@ -26,6 +26,7 @@ class App(QtWidgets.QMainWindow):
         font = QFontDatabase.addApplicationFont('resourses/font/Fairfax.ttf')
         if font == -1:
             print("ERROR: failed to connect font")
+        self.setWindowIcon(QIcon('resourses/img/icon.ico'))
 
         self.game = Game(self)
 
