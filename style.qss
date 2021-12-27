@@ -30,6 +30,7 @@ QLabel{
     color: #219C4E;
     background-color: #1c1c1c;
     font: 20pt "Fairfax";
+    margin-left: 3px;
 }
 
 QLineEdit{
