@@ -41,6 +41,9 @@ QLineEdit{
 
 QTextBrowser{
     border: none;
+    background-color: #252525;
+    color: #219C4E;
+    font: 14pt "Fairfax";
 }
 
 QInputDialog{

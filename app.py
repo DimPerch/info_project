@@ -39,10 +39,10 @@ class App(QtWidgets.QMainWindow):
         self.size_timer.timeout.connect(self.game.size_check)
         self.size_timer.start(100)
 
-        self.img = [(QPixmap('resourses/img/00.jpg'), 'Злой бандит заложил бомбу'),
-                    (QPixmap('resourses/img/01.jpg'), 'Угадай где'),
-                    (QPixmap('resourses/img/02.jpg'), 'Угадал'),
-                    (QPixmap('resourses/img/03.jpg'), 'Неугадал')]
+        self.img = [(QPixmap('resourses/img/00.jpg'), 'Англия, 1927 год\nВ городе свирепствует серийный убийца по кличке Хорни. В какой-то момент полиция поймала преступника, но Хорни успел оставить записку его подельнику. Полиция нашла эту записку, но она оказалось зашифрована. На допросе выяснили, что где-то в городе заложена бомба, и координаты зашифрованы. Команда Скотланд-Ярда бессильна. Вы - знаменитый на всю страну дешифровщик, и только вам удастся расшифровать координаты и спасти население от неминуемой гибели.'),
+                    (QPixmap('resourses/img/01.jpg'), 'Сыщикам удалось перехватить шифр, но сколько они не пытались, расшифровать его не удалось. Вся надежда на тебя, великий детектив, раскрывший множество преступлений. Расшифруй шифр!'),
+                    (QPixmap('resourses/img/02.jpg'), 'Тебе удалось расшифровать код, а сыщики благодаря этому смогли обезвредить бомбу. Спасибо тебе, ты спас множество жизней!'),
+                    (QPixmap('resourses/img/03.jpg'), 'К сожалению, ты оказался не так хорош, твоя некомпетентность и купленная корочка, привели к смертям граждан...')]
 
 
     
@@ -134,6 +134,9 @@ class Game:
         h = self.app.game_screen.ui.img.height()
         self.app.game_screen.ui.img.setPixmap(self.app.img[self.state][0].scaledToHeight(h))
         self.app.game_screen.ui.text.setText(self.app.img[self.state][1])
+
+        size = self.app.game_screen.ui.text.document().size().toSize()
+        self.app.game_screen.ui.text.setFixedHeight(size.height())
 
 
     def next_state(self):
